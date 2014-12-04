@@ -1,13 +1,18 @@
 /**
- * Created by SU on 03.12.2014.
+ * Created by SU on 04.12.2014.
  */
-public class MyRoom {
+class MyRoom {
     private Integer capacity;
     private MyRequisition myRequisition;
     private String typeOfRoom;// = {"lux","econom", "standart"};
+
+    MyRoom() {
+    }
+
     public MyRoom(Integer capacity, String typeOfRoom) {
         this.capacity = capacity;
         this.typeOfRoom = typeOfRoom;
+        
     }
     public String getTypeOfRoom() {
         return typeOfRoom;
@@ -42,3 +47,4 @@ public class MyRoom {
     }
 
 }
+

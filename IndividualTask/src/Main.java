@@ -15,6 +15,7 @@ public class Main {
         myRooms.add(new MyRoom(3, "Standart"));
         myRooms.add(new MyRoom(3, "Lux"));
         myRooms.add(new MyRoom(2, "Lux"));
+        myRooms.add(new MyRoom(2, "Lux"));
         myRooms.add(new MyRoom(1, "Lux"));
         return myRooms;
     }
@@ -26,6 +27,7 @@ public class Main {
         new Thread(new MyRequisition("2",1,30,hotel, "Lux")).start();
         new Thread(new MyRequisition("5",5,80,hotel, "Econom")).start();
         new Thread(new MyRequisition("6",4,150,hotel, "Econom")).start();
+
         new Thread(new MyRequisition("12",3,60,hotel, "Lux")).start();
         new Thread(new MyRequisition("9",3,90,hotel, "Econom")).start();
         new Thread(new MyRequisition("13",4,300,hotel, "Econom")).start();
