@@ -1,3 +1,5 @@
+import java.awt.image.AreaAveragingScaleFilter;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +16,7 @@ public class MyHotel {
     public MyHotel() {
     }
 
-    public MyHotel(List<MyRoom> myRooms) {
+    public MyHotel(ArrayList<MyRoom> myRooms) {
         this.myRooms = myRooms;
         myRequisitions = new ArrayList<MyRequisition>();
     }
@@ -23,7 +25,7 @@ public class MyHotel {
         int count = 0;
         for (MyRoom myRoom : myRooms) {
             if (myRoom.getTypeOfRoom().equals(type) && myRoom.getMyRequisition() == null) {
-                count += myRoom.getCapacity();
+                count =count + myRoom.getCapacity();
             }
         }
         return count;
@@ -76,8 +78,8 @@ public class MyHotel {
     }
 
     public synchronized void eviction(MyRequisition myRequisition) {
-        System.out.println("Eviction " + myRequisition);
-        System.out.println("Now : " + (new SimpleDateFormat("HH:mm:ss:ms").format(new Date().getTime())));
+        System.out.println("Eviction " + myRequisition + '\n'+
+                "Now : " + (new SimpleDateFormat("HH:mm:ss:ms").format(new Date().getTime()) +'\n'));
         for (MyRoom myRoom : myRooms) {
             if (myRequisition.equals(myRoom.getMyRequisition())) {
                 myRoom.setMyRequisition(null);
@@ -101,7 +103,7 @@ public class MyHotel {
             return myRequisitions.add(myRequisition);
         } else {
             System.out.println("Can't settle " + myRequisition.getName() + " in room " + myRequisition.getTypeOfRoom()
-                    + ". They need: " + myRequisition.getAmountOfPeople() + " beds. But available: " + counterOfFreeRooms(myRequisition.getTypeOfRoom()));
+                    + ". They need: " + myRequisition.getAmountOfPeople() + " beds. But available only :" + counterOfFreeRooms(myRequisition.getTypeOfRoom()));
             System.out.println("________________\n");
             return false;
         }

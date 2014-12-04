@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
  * Created by SU on 04.12.2014.
  */
 public class Main {
-    public static List<MyRoom> createMyRooms(){
+    public static ArrayList<MyRoom> createMyRooms(){
         ArrayList<MyRoom> myRooms = new ArrayList<MyRoom>();
         myRooms.add(new MyRoom(3,"Lux"));
         myRooms.add(new MyRoom(2,"Lux"));
