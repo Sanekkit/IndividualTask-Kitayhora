@@ -103,7 +103,7 @@ public class MyRequisition implements Runnable{
                     Thread.sleep(milliseconds);
                     myHotel.eviction(this);
                     synchronized (typeOfRoom) {
-                        typeOfRoom.notify();
+                        typeOfRoom.notify();// сделать обьектом чтобы синхронизировалось
                     }
                     break;
                 } else {

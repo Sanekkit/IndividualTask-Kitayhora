@@ -2,17 +2,16 @@
  * Created by SU on 04.12.2014.
  */
 class MyRoom {
-    private Integer capacity;
+    private int capacity;
     private MyRequisition myRequisition;
     private String typeOfRoom;// = {"lux","econom", "standart"};
 
     MyRoom() {
     }
 
-    public MyRoom(Integer capacity, String typeOfRoom) {
+    public MyRoom(int capacity, String typeOfRoom) {
         this.capacity = capacity;
         this.typeOfRoom = typeOfRoom;
-        
     }
     public String getTypeOfRoom() {
         return typeOfRoom;
@@ -28,15 +27,13 @@ class MyRoom {
         this.myRequisition = myRequisition;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-
-
     @Override
     public String toString() {
         return "MyRoom " +
@@ -45,6 +42,5 @@ class MyRoom {
                 ", typeOfRoom='" + typeOfRoom + '\'' +
                 '.';
     }
-
 }
 

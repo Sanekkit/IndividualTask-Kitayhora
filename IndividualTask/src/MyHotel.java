@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -8,9 +9,6 @@ import java.util.List;
  */
 public class MyHotel {
     private List<MyRoom> myRooms;
-    private int diferencesOfRooms;
-    private MyRoom nearestRoom1;
-    private MyRoom nearestRoom2;
     private List<MyRequisition> myRequisitions;
 
     public MyHotel() {
@@ -32,6 +30,8 @@ public class MyHotel {
     }
 
     public List<MyRoom> freeRooms(MyRequisition myRequisition) {
+         MyRoom nearestRoom1;
+         MyRoom nearestRoom2;
         List<MyRoom> freeRooms = new ArrayList<MyRoom>();
         int freeBed = 0;
         int myRequisitionAmount = myRequisition.getAmountOfPeople();
@@ -46,7 +46,6 @@ public class MyHotel {
         }
         nearestRoom1 = null;
         nearestRoom2 = null;
-        diferencesOfRooms = 1000;
         for (MyRoom room1 : freeRooms) {
             for (MyRoom room2 : freeRooms) {
                 if (room1.equals(room2)) {
@@ -72,16 +71,13 @@ public class MyHotel {
     public String toString() {
         return "MyHotel{" +
                 "myRooms=" + myRooms +
-                ", diferencesOfRooms=" + diferencesOfRooms +
-                ", nearestRoom1=" + nearestRoom1 +
-                ", nearestRoom2=" + nearestRoom2 +
                 ", myRequisitions=" + myRequisitions +
                 '}';
     }
 
     public synchronized void eviction(MyRequisition myRequisition) {
         System.out.println("Eviction " + myRequisition);
-        System.out.println("Now : " + new Date(System.currentTimeMillis()));
+        System.out.println("Now : " + (new SimpleDateFormat("HH:mm:ss:ms").format(new Date().getTime())));
         for (MyRoom myRoom : myRooms) {
             if (myRequisition.equals(myRoom.getMyRequisition())) {
                 myRoom.setMyRequisition(null);
@@ -101,12 +97,12 @@ public class MyHotel {
                 room.setMyRequisition(myRequisition);
                 System.out.println("In room are " + room.getCapacity() + " beds.");
             }
-            System.out.println("________________\n\n");
+            System.out.println("________________\n");
             return myRequisitions.add(myRequisition);
         } else {
             System.out.println("Can't settle " + myRequisition.getName() + " in room " + myRequisition.getTypeOfRoom()
                     + ". They need: " + myRequisition.getAmountOfPeople() + " beds. But available: " + counterOfFreeRooms(myRequisition.getTypeOfRoom()));
-            System.out.println("________________\n\n");
+            System.out.println("________________\n");
             return false;
         }
     }
@@ -118,24 +114,15 @@ public class MyHotel {
 
         MyHotel myHotel = (MyHotel) o;
 
-        if (diferencesOfRooms != myHotel.diferencesOfRooms) return false;
         if (myRequisitions != null ? !myRequisitions.equals(myHotel.myRequisitions) : myHotel.myRequisitions != null)
             return false;
         if (myRooms != null ? !myRooms.equals(myHotel.myRooms) : myHotel.myRooms != null) return false;
-        if (nearestRoom1 != null ? !nearestRoom1.equals(myHotel.nearestRoom1) : myHotel.nearestRoom1 != null)
-            return false;
-        if (nearestRoom2 != null ? !nearestRoom2.equals(myHotel.nearestRoom2) : myHotel.nearestRoom2 != null)
-            return false;
-
-        return true;
+               return true;
     }
 
     @Override
     public int hashCode() {
         int result = myRooms != null ? myRooms.hashCode() : 0;
-        result = 31 * result + diferencesOfRooms;
-        result = 31 * result + (nearestRoom1 != null ? nearestRoom1.hashCode() : 0);
-        result = 31 * result + (nearestRoom2 != null ? nearestRoom2.hashCode() : 0);
         result = 31 * result + (myRequisitions != null ? myRequisitions.hashCode() : 0);
         return result;
     }
